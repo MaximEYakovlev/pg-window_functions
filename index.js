@@ -15,13 +15,23 @@ const connect = async () => {
 
 const createTable = async () => {
     await client.query(`
-        CREATE TABLE IF NOT EXISTS Rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(10) NOT NULL, price integer NOT NULL);
+        CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, price integer NOT NULL);
+    `);
+}
+
+const insert = async () => {
+    await client.query(`
+        INSERT INTO rooms (home_type, price) VALUES
+            ('Entire home/apt', 80),
+            ('Private room', 35),
+            ('Shared room', 40);
     `);
 }
 
 const run = async () => {
     await connect();
     await createTable();
+    await insert();
 }
 
 run();
