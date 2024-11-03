@@ -1,21 +1,20 @@
-const { Sequelize } = require('sequelize');
+const pg = require('pg');
+const { Client } = pg;
 
-const sequelize = new Sequelize('postgres_db', 'user', 'password', {
+const client = new Client({
+    user: 'user',
+    password: 'password',
     host: 'localhost',
-    dialect: 'postgres'
+    port: 5432,
+    database: 'postgres_db',
 });
 
 const connect = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-    } catch (error) {
-        console.error('Unable to connect to the database:', error);
-    }
+    await client.connect();
 }
 
 const createTable = async () => {
-    await sequelize.query(`
+    await client.query(`
         CREATE TABLE IF NOT EXISTS Rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(10) NOT NULL, price integer NOT NULL);
     `);
 }
