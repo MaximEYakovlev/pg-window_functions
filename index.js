@@ -14,8 +14,15 @@ const connect = async () => {
     }
 }
 
+const createTable = async () => {
+    await sequelize.query(`
+        CREATE TABLE IF NOT EXISTS Rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(10) NOT NULL, price integer NOT NULL);
+    `);
+}
+
 const run = async () => {
     await connect();
+    await createTable();
 }
 
 run();
