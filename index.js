@@ -1,13 +1,8 @@
 import pg from 'pg';
-const { Client } = pg;
+import { dbConfig } from './dbConfig.js';
 
-const client = new Client({
-    user: 'user',
-    password: 'password',
-    host: 'localhost',
-    port: 5432,
-    database: 'postgres_db',
-});
+const { Client } = pg;
+const client = new Client(dbConfig);
 
 const connect = async () => {
     await client.connect();
