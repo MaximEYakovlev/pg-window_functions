@@ -8,6 +8,10 @@ const connect = async () => {
     await client.connect();
 }
 
+const disconnect = async () => {
+    await client.end();
+}
+
 const createTable = async () => {
     await client.query(`
         CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, price integer NOT NULL);
@@ -26,10 +30,10 @@ const insertData = async () => {
 // window function
 const selectData = async () => {
     await client.query(`
-    SELECT
-        home_type, price,
-        AVG(price) OVER (PARTITION BY home_type) AS avg_price
-    FROM rooms;
+        SELECT
+            home_type, price,
+            AVG(price) OVER (PARTITION BY home_type) AS avg_price
+        FROM rooms;
     `);
 }
 
@@ -38,6 +42,7 @@ const run = async () => {
     await createTable();
     await insertData();
     await selectData();
+    await disconnect();
 }
 
 run();
