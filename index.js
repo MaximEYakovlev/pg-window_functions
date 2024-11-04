@@ -23,10 +23,21 @@ const insertData = async () => {
     `);
 }
 
+// window function
+const selectData = async () => {
+    await client.query(`
+    SELECT
+        home_type, price,
+        AVG(price) OVER (PARTITION BY home_type) AS avg_price
+    FROM rooms;
+    `);
+}
+
 const run = async () => {
     await connect();
     await createTable();
     await insertData();
+    await selectData();
 }
 
 run();
