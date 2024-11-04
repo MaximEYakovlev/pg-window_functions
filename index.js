@@ -1,4 +1,4 @@
-const pg = require('pg');
+import pg from 'pg';
 const { Client } = pg;
 
 const client = new Client({
@@ -19,7 +19,7 @@ const createTable = async () => {
     `);
 }
 
-const insert = async () => {
+const insertData = async () => {
     await client.query(`
         INSERT INTO rooms (home_type, price) VALUES
             ('Entire home/apt', 80),
@@ -31,7 +31,7 @@ const insert = async () => {
 const run = async () => {
     await connect();
     await createTable();
-    await insert();
+    await insertData();
 }
 
 run();
