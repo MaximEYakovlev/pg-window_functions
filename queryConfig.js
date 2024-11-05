@@ -13,7 +13,7 @@ export const insertDataQuery = {
 
 export const selectDataQuery = {
     text: `SELECT
-                home_type, price,
-                AVG(price) OVER (PARTITION BY home_type) AS avg_price
+                home_type, has_internet, price,
+                AVG(price) OVER (PARTITION BY home_type, has_internet) AS avg_price
             FROM rooms;`
 };
