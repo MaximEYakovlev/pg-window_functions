@@ -31,5 +31,9 @@ export const selectDataQuery = {
     text: `SELECT
                 home_type, has_internet, price,
                 AVG(price) OVER (PARTITION BY home_type, has_internet) AS avg_price
-            FROM rooms;`
+            FROM rooms;`,
+};
+
+export const collectGarbageQuery = {
+    text: 'VACUUM ANALYZE rooms;',
 };

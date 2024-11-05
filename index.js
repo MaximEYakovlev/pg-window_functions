@@ -13,6 +13,10 @@ const disconnect = async () => {
     await client.end();
 }
 
+const collectGarbage = async () => {
+    await client.query(QUERY.collectGarbageQuery);
+}
+
 const createTable = async () => {
     await client.query(QUERY.createTableQuery);
 }
@@ -31,6 +35,7 @@ const run = async () => {
     await createTable();
     await insertData();
     await selectData();
+    await collectGarbage();
     await disconnect();
 }
 
