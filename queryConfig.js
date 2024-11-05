@@ -12,6 +12,7 @@ export const insertDataQuery = {
 };
 
 export const selectDataQuery = {
+    name: 'fetch-data',
     text: `SELECT
                 home_type, has_internet, price,
                 AVG(price) OVER (PARTITION BY home_type, has_internet) AS avg_price
