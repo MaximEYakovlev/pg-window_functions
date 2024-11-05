@@ -1,13 +1,13 @@
 export const createTableQuery = {
-    text: `CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, price integer NOT NULL);`,
+    text: `CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, has_internet boolean NOT NULL, price integer NOT NULL);`,
 };
 
 export const insertDataQuery = {
-    text: 'INSERT INTO rooms(home_type, price) VALUES($1, $2), ($3, $4), ($5, $6)',
+    text: 'INSERT INTO rooms(home_type, has_internet, price) VALUES($1, $2, $3), ($4, $5, $6), ($7, $8, $9)',
     values: [
-        'Entire home/apt', 80,
-        'Private room', 35,
-        'Shared room', 40
+        'Entire home/apt', true, 80,
+        'Private room', false, 35,
+        'Shared room', true, 40
     ],
 };
 
