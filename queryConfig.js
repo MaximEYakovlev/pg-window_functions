@@ -3,11 +3,12 @@ export const createTableQuery = {
 };
 
 export const insertDataQuery = {
-    text: `INSERT INTO rooms (home_type, price)
-                VALUES
-                    ('Entire home/apt', 80),
-                    ('Private room', 35),
-                    ('Shared room', 40);`
+    text: 'INSERT INTO rooms(home_type, price) VALUES($1, $2), ($3, $4), ($5, $6)',
+    values: [
+        'Entire home/apt', 80,
+        'Private room', 35,
+        'Shared room', 40
+    ],
 };
 
 export const selectDataQuery = {
