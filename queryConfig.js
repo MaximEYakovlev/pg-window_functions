@@ -29,8 +29,8 @@ export const insertDataQuery = {
 export const selectDataQuery = {
     name: 'fetch-data',
     text: `SELECT
-                home_type, has_internet, price,
-                AVG(price) OVER (PARTITION BY home_type, has_internet ORDER BY price ASC) AS avg_price
+                home_type, price,
+                AVG(price) OVER (PARTITION BY home_type ORDER BY price ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS avg_price
             FROM rooms;`,
 };
 
