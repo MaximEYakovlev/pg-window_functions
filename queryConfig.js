@@ -1,5 +1,5 @@
 export const createSchemaQuery = {
-    text: `CREATE SCHEMA max`,
+    text: `CREATE SCHEMA IF NOT EXISTS max`,
 };
 
 export const createTableQuery = {
@@ -8,7 +8,7 @@ export const createTableQuery = {
 
 export const insertDataQuery = {
     text: `
-        INSERT INTO rooms(home_type, has_internet, price)
+        INSERT INTO max.rooms(home_type, has_internet, price)
         VALUES
         ($1, $2, $3), ($4, $5, $6), ($7, $8, $9), ($10, $11, $12),
         ($13, $14, $15), ($16, $17, $18), ($19, $20, $21), ($22, $23, $24),
@@ -35,9 +35,9 @@ export const selectDataQuery = {
     text: `SELECT
                 home_type, price,
                 AVG(price) OVER (PARTITION BY home_type ORDER BY price ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS avg_price
-            FROM rooms;`,
+            FROM max.rooms;`,
 };
 
 export const collectGarbageQuery = {
-    text: 'VACUUM ANALYZE rooms;',
+    text: 'VACUUM ANALYZE max.rooms;',
 };
