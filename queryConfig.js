@@ -3,7 +3,7 @@ export const createSchemaQuery = {
 };
 
 export const createTableQuery = {
-    text: `CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, has_internet boolean NOT NULL, price integer NOT NULL);`,
+    text: `CREATE TABLE IF NOT EXISTS max.rooms(id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, has_internet boolean NOT NULL, price integer NOT NULL);`,
 };
 
 export const insertDataQuery = {
