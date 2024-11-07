@@ -1,3 +1,7 @@
+export const createSchemaQuery = {
+    text: `CREATE SCHEMA max`,
+};
+
 export const createTableQuery = {
     text: `CREATE TABLE IF NOT EXISTS rooms (id SERIAL NOT NULL PRIMARY KEY, home_type varchar(20) NOT NULL, has_internet boolean NOT NULL, price integer NOT NULL);`,
 };

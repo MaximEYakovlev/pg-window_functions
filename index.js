@@ -17,6 +17,10 @@ const collectGarbage = async () => {
     await client.query(QUERY.collectGarbageQuery);
 }
 
+const createSchema = async () => {
+    await client.query(QUERY.createSchemaQuery);
+}
+
 const createTable = async () => {
     await client.query(QUERY.createTableQuery);
 }
@@ -32,6 +36,7 @@ const selectData = async () => {
 
 const run = async () => {
     await connect();
+    await createSchema();
     await createTable();
     await insertData();
     await selectData();
